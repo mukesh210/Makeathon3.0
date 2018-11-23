@@ -40,11 +40,12 @@ trait X12Validator {
             interchangeIdQualifierIsValid(interChangeSenderIdQualifier) &&
             interchangeSenderOrReceiverIdIsValid(interchangeSenderId) &&
             interchangeIdQualifierIsValid(interChangeReceiverIdQualifier) &&
-            interchangeSenderOrReceiverIdIsValid(interchangeReceiverId)
+            interchangeSenderOrReceiverIdIsValid(interchangeReceiverId) &&
+
           ) {
             Some(ISAHeader(interChangeControlHeader, authInfoQualifier, authInfo, securityInfoQualifier, securityInfo,
-              interChangeIdQualifier, interchangeSenderId, interchangeReceiverId, interchangeTime, repetitionSep,
-              interchangeControlVersion, interchangeControlNo, ackReq, usageIndicator, componentElementSeparator))
+              interChangeSenderIdQualifier, interchangeSenderId, interChangeReceiverIdQualifier, interchangeReceiverId,
+              interchangeTime, repetitionSep, interchangeControlVersion, interchangeControlNo, ackReq, usageIndicator, componentElementSeparator))
           } else None
 
         case _ => None
