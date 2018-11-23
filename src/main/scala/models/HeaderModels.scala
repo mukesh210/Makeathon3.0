@@ -27,6 +27,7 @@ case class SubmitterName(submitterName: String, entityIdCode: String, entityType
 
 case class CommunicationDetails(communicationNoQualifier: String, communicationNumber: String)
 
+//PER
 case class SubmitterContactInfo(submitterContactInfo: String, contactFunctionCode: String, Name: String,
                                 communicationDetails: List[CommunicationDetails])
 
@@ -53,6 +54,7 @@ case class BillingProviderCityDetail(detailCode: String, cityName: String, state
 //loop 2000B HLHeader can be used
 case class SubscriberHL(subscriberHL: String, subscriberID: Int, subscriberParentId: Int, HLCode: Int, HLChildCode: Int)
 
+//TODO SBR
 case class SubscriberInfo(subscriberInfo: String, payerRespCode: String, individualRelationCode: Option[String],
                           refId: Option[String], name: Option[String], insuranceType: Option[Int],
                           coordinationOfBenefit: String, condition: Boolean, EmployeeStatusCode: String,
@@ -66,15 +68,27 @@ case class PAT(patientInfo: String, IndividualRelationShip: String, patientLocat
                StudentStatusCode: String, dateTimeQualifier: String, dateTime: String, measurementCode: String,
                weight: String, condition: Boolean)
 
+//CLM
 case class ClaimInfo(clm: String, clmSubmitterId: String, monetaryAmount: String, clmFillingIndicator: String,
                      nonInstitutionalClaimType: String, facilityCode: String, claimFreqTypeCode: String,
                      signature: Boolean, providerAcceptAssignment: String, AssignmentBenefits: Boolean,
                      releaseInfo: Boolean, patientSignatureSourceCode: String)
 
+//REF
 case class ReplacementClaim(cliaNumber: String, referenceIdQualifier: String, referenceId: String)
 
 case class DTP(dateIllness: String, dateTimeQualifier: String, dateTimeFormatQualifier: String, dateTime: String)
 
+case class NM1(per: Option[SubmitterContactInfo], hl: Option[HLHeader], n3: Option[BillingProviderAddress],
+               n4: Option[BillingProviderCityDetail], ref: Option[ReplacementClaim], sbr: Option[SubscriberInfo],
+               dmg: Option[DMG], pat: Option[PAT], clm: Option[ClaimInfo], hi: Option[HI], lx: Option[LX],
+               sv1: Option[SV1], dtp: Option[DTP])
+
+case class ST_SE(controlNumber: String, nm1s: List[NM1])
+
+case class GS_GE(controlNumber: String, stSes: List[ST_SE])
+
+case class ISA_IEA(controlNumber: String, gsGes: List[GS_GE])
 
 object Constants {
   val validTransactionCodeBHT = List("31", "CH", "RP")
@@ -83,7 +97,7 @@ object Constants {
 
   /*
   *
-  * Electronic data interchange Access Number
+  * ED: Electronic data interchange Access Number
   * Electronic Mail
   * Telephone Extension
   * Facsimile
