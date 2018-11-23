@@ -2,8 +2,9 @@ package models
 
 //ISA
 case class ISAHeader(interChangeControlHeader: String, authInfoQualifier: String, authInfo: String,
-                     securityInfoQualifier: String, securityInfo: String, interChangeIdQualifier: String,
-                     interchangeSenderId: String, interchangeReceiverId: String, interchangeTime: String,
+                     securityInfoQualifier: String, securityInfo: String, interChangeSenderIdQualifier: String,
+                     interchangeSenderId: String, interChangeReceiverIdQualifier: String,
+                     interchangeReceiverId: String, interchangeTime: String,
                      repetitionSep: String, interchangeControlVersion: String, interchangeControlNo: String,
                      ackReq: String, usageIndicator: String, componentElementSeparator: String)
 
@@ -79,7 +80,7 @@ case class ReplacementClaim(cliaNumber: String, referenceIdQualifier: String, re
 
 case class DTP(dateIllness: String, dateTimeQualifier: String, dateTimeFormatQualifier: String, dateTime: String)
 
-case class NM1(per: Option[SubmitterContactInfo], hl: Option[HLHeader], n3: Option[BillingProviderAddress],
+/*case class NM1(per: Option[SubmitterContactInfo], hl: Option[HLHeader], n3: Option[BillingProviderAddress],
                n4: Option[BillingProviderCityDetail], ref: Option[ReplacementClaim], sbr: Option[SubscriberInfo],
                dmg: Option[DMG], pat: Option[PAT], clm: Option[ClaimInfo], hi: Option[HI], lx: Option[LX],
                sv1: Option[SV1], dtp: Option[DTP])
@@ -88,7 +89,7 @@ case class ST_SE(controlNumber: String, nm1s: List[NM1])
 
 case class GS_GE(controlNumber: String, stSes: List[ST_SE])
 
-case class ISA_IEA(controlNumber: String, gsGes: List[GS_GE])
+case class ISA_IEA(controlNumber: String, gsGes: List[GS_GE])*/
 
 object Constants {
   val validTransactionCodeBHT = List("31", "CH", "RP")
